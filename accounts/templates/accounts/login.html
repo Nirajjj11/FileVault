@@ -1,43 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
 
-    <meta charset="UTF-8">
+{% block title %}
+Login | FileVault
+{% endblock %}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
 
-    <title>Login | FileVault</title>
+{% block content %}
+<section class="py-5">
+      <div class="container">
+            <div class="row justify-content-center">
+                  <div class="col-md-6 col-lg-5">
+                        <div class="card border-0 shadow-sm">
+                              <div class="card-body p-4 p-md-5">
+                                    <div class="text-center mb-4">
+                                          <h2 class="fw-bold">Welcome Back</h2>
+                                          <p class="text-secondary">
+                                                Login to your FileVault account.
+                                          </p>
+                                    </div>
+                                    <form method="post">
+                                          {% csrf_token %}
+                                          {% if form.non_field_errors %}
 
-</head>
+                                          <div class="alert alert-danger">
 
-<body>
+                                                {{ form.non_field_errors }}
 
-    <h1>Login</h1>
+                                          </div>
 
-    <form method="post">
+                                          {% endif %}
+                                          <div class="mb-3">
+                                                <label for="{{ form.username.id_for_label }}" class="form-label">
+                                                      Username
+                                                </label>
+                                                {{ form.username }}
 
-        {% csrf_token %}
+                                                {% if form.username.errors %}
 
-        {{ form.as_p }}
+                                                <div class="text-danger small">
+                                                      {{ form.username.errors }}
+                                                </div>
 
-        <button type="submit">
-            Login
-        </button>
+                                                {% endif %}
+                                          </div>
+                                          <div class="mb-3">
+                                                <label for="{{ form.password.id_for_label }}" class="form-label">
+                                                      Password
+                                                </label>
+                                                {{ form.password }}
 
-    </form>
+                                                {% if form.password.errors %}
 
-    <p>
-        Don't have an account?
+                                                <div class="text-danger small">
+                                                      {{ form.password.errors }}
+                                                </div>
 
-        <a href="{% url 'accounts:register' %}">
-            Register
-        </a>
-    </p>
-
-</body>
-
-</html>
+                                                {% endif %}
+                                          </div>
+                                          <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
+                                    </form>
+                                    <p class="text-center mt-4 mb-0">
+                                          Don't have an account?
+                                          <a href="{% url 'accounts:register' %}" class="text-decoration-none">
+                                                Create one
+                                          </a>
+                                    </p>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</section>
+{% endblock %}

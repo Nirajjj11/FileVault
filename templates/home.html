@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block title %}
+FileVault | Secure File Management
+{% endblock %}
+{% block content %}
+<!-- ================= HERO ================= -->
+<section class="hero-section">
+      <div class="container">
+            <div class="row align-items-center min-vh-75">
+                  <!-- LEFT CONTENT -->
+                  <div class="col-lg-7"> <span class="badge text-bg-primary mb-3 px-3 py-2">
+                              Simple • Secure • Organized
+                        </span>
+                        <h1 class="display-4 fw-bold mb-4"> Store, organize and share
+                              your files with
+                              <span class="text-primary">
+                                    FileVault.
+                              </span>
+                        </h1>
+                        <p class="lead text-secondary mb-4"> Upload your documents, images, presentations,
+                              videos and other files. Organize everything
+                              inside folders and share files securely. </p>
+                        <div class="d-flex gap-3 flex-wrap"> {% if user.is_authenticated %} <a href="#"
+                                    class="btn btn-primary btn-lg px-4">
+                                    Go to Dashboard
+                              </a> {% else %} <a href="{% url 'accounts:register' %}"
+                                    class="btn btn-primary btn-lg px-4">
+                                    Get Started
+                              </a>
+                              <a href="{% url 'accounts:login' %}" class="btn btn-outline-dark btn-lg px-4">
+                                    Login
+                              </a> {% endif %}
+                        </div>
+                  </div>
+                  <!-- RIGHT VISUAL -->
+                  <div class="col-lg-5 mt-5 mt-lg-0">
+                        <div class="file-card shadow-lg">
+                              <div class="file-card-header">
+                                    <div>
+                                          <small class="text-secondary">
+                                                Your Storage
+                                          </small>
+                                          <h4 class="fw-bold mb-0">
+                                                My Files
+                                          </h4>
+                                    </div>
+                                    <div class="storage-icon">
+                                          ☁
+                                    </div>
+                              </div>
+                              <div class="storage-progress">
+                                    <div class="progress" role="progressbar" aria-valuenow="68" aria-valuemin="0"
+                                          aria-valuemax="100">
+                                          <div class="progress-bar" style="width: 68%"></div>
+                                    </div> <small class="text-secondary">
+                                          6.8 GB of 10 GB used
+                                    </small>
+                              </div>
+                              <div class="file-item">
+                                    <div class="file-type pdf">
+                                          PDF
+                                    </div>
+                                    <div class="flex-grow-1"> <strong>
+                                                Resume.pdf
+                                          </strong> <small class="d-block text-secondary">
+                                                2.4 MB
+                                          </small> </div>
+                              </div>
+                              <div class="file-item">
+                                    <div class="file-type image">
+                                          IMG
+                                    </div>
+                                    <div class="flex-grow-1"> <strong>
+                                                Project.png
+                                          </strong> <small class="d-block text-secondary">
+                                                1.8 MB
+                                          </small> </div>
+                              </div>
+                              <div class="file-item">
+                                    <div class="file-type video">
+                                          MP4
+                                    </div>
+                                    <div class="flex-grow-1"> <strong>
+                                                Demo.mp4
+                                          </strong> <small class="d-block text-secondary">
+                                                48 MB
+                                          </small> </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</section><!-- ================= FEATURES ================= -->
+<section class="py-5 bg-white">
+      <div class="container">
+            <div class="text-center mb-5"> <span class="text-primary fw-semibold">
+                        FEATURES
+                  </span>
+                  <h2 class="fw-bold mt-2">
+                        Everything you need to manage your files
+                  </h2>
+                  <p class="text-secondary">
+                        Built around simple and organized file management.
+                  </p>
+            </div>
+            <div class="row g-4">
+                  <div class="col-md-4">
+                        <div class="feature-card h-100">
+                              <div class="feature-icon">
+                                    ↑
+                              </div>
+                              <h4 class="fw-bold">
+                                    Upload Files
+                              </h4>
+                              <p class="text-secondary">
+                                    Upload images, documents, presentations,
+                                    videos, text files and more.
+                              </p>
+                        </div>
+                  </div>
+                  <div class="col-md-4">
+                        <div class="feature-card h-100">
+                              <div class="feature-icon">
+                                    □
+                              </div>
+                              <h4 class="fw-bold">
+                                    Organize
+                              </h4>
+                              <p class="text-secondary">
+                                    Create folders and keep your files
+                                    organized in a familiar structure.
+                              </p>
+                        </div>
+                  </div>
+                  <div class="col-md-4">
+                        <div class="feature-card h-100">
+                              <div class="feature-icon">
+                                    ↗
+                              </div>
+                              <h4 class="fw-bold">
+                                    Share
+                              </h4>
+                              <p class="text-secondary">
+                                    Create shareable links and control
+                                    what other users can do.
+                              </p>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</section>{% endblock %}

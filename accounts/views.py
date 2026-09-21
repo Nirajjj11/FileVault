@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 
 class RegisterView(FormView):
       template_name = 'accounts/register.html'
@@ -26,6 +26,7 @@ class RegisterView(FormView):
       
 class UserLoginView(LoginView):
       template_name = "accounts/login.html"
+      authentication_form = LoginForm
       redirect_authenticated_user = True
 
 class UserLogoutView(LogoutView):
