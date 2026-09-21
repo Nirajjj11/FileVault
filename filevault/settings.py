@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'accounts',         # <- for accounts app
+    'storage',          # <- for storage app
 ]
 
 MIDDLEWARE = [
