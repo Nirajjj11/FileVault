@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.urls import reverse
 from django.conf import settings
 
 class Folder(models.Model):
@@ -25,6 +24,14 @@ class Folder(models.Model):
       
       def __str__(self):
             return self.name
+      
+      def get_absolute_url(self):
+            return reverse(
+                  "storage:folder-detail",
+                  kwargs={
+                        "pk": self.pk,
+                  },
+            )
 
 class File(models.Model):
       owner = models.ForeignKey(

@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ folder.name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                  <a href="{% url 'storage:dashboard' %}" class="text-decoration-none">
+                        ← My Files
+                  </a>
+
+                  <h2 class="fw-bold mt-2 mb-1">
+                        📁 {{ folder.name }}
+                  </h2>
+
+            </div>
+
+
+            <div class="d-flex gap-2">
+
+                  <a href="{% url 'storage:folder-create' %}?parent={{ folder.pk }}" class="btn btn-outline-primary">
+                        + New Folder
+                  </a>
+
+                  <a href="{% url 'storage:file-upload' folder.id %}" class="btn btn-primary">
+                        ⬆ Upload File
+                  </a>
+
+            </div>
+
+      </div>
+
+
+      <!-- Subfolders -->
+
+      <div class="mb-5">
+
+            <h4 class="fw-bold mb-3">
+                  Folders
+            </h4>
+
+            {% if subfolders %}
+
+            <div class="row g-3">
+
+                  {% for subfolder in subfolders %}
+
+                  <div class="col-md-4 col-lg-3">
+
+                        <div class="card border-0 shadow-sm">
+
+                              <div class="card-body">
+
+                                    <div class="fs-2">
+                                          📁
+                                    </div>
+
+                                    <h6 class="mt-2">
+                                          {{ subfolder.name }}
+                                    </h6>
+
+                                    <a href="{{ subfolder.get_absolute_url }}" class="btn btn-sm btn-outline-primary">
+                                          Open
+                                    </a>
+
+                              </div>
+
+                        </div>
+
+                  </div>
+
+                  {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p class="text-muted">
+                  No subfolders.
+            </p>
+
+            {% endif %}
+
+      </div>
+
+
+      <!-- Files -->
+
+      <div>
+
+            <h4 class="fw-bold mb-3">
+                  Files
+            </h4>
+
+            {% if files %}
+
+            <div class="table-responsive">
+
+                  <table class="table table-hover align-middle">
+
+                        <thead>
+
+                              <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th>Uploaded</th>
+                                    <th class="text-end">Actions</th>
+                              </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                              {% for file in files %}
+
+                              <tr>
+
+                                    <td>
+                                          📄 {{ file.original_name }}
+                                    </td>
+
+                                    <td>
+                                          {{ file.file_type|default:"Unknown" }}
+                                    </td>
+
+                                    <td>
+                                          {{ file.size|filesizeformat }}
+                                    </td>
+
+                                    <td>
+                                          {{ file.uploaded_at|date:"d M Y H:i" }}
+                                    </td>
+
+                                    <td class="text-end">
+
+                                          <a href="{{ file.file.url }}" class="btn btn-sm btn-outline-success" download>
+                                                Download
+                                          </a>
+
+                                          <a href="{% url 'storage:file-rename' file.pk %}"
+                                                class="btn btn-sm btn-outline-primary">
+                                                Rename
+                                          </a>
+
+                                          <a href="{% url 'storage:file-delete' file.pk %}"
+                                                class="btn btn-sm btn-outline-danger">
+                                                Delete
+                                          </a>
+
+                                    </td>
+
+                              </tr>
+
+                              {% endfor %}
+
+                        </tbody>
+
+                  </table>
+
+            </div>
+
+            {% else %}
+
+            <div class="text-center py-4">
+
+                  <p class="text-muted">
+                        This folder is empty.
+                  </p>
+
+                  <a href="{% url 'storage:file-upload' folder.id %}" class="btn btn-primary">
+                        Upload Your First File
+                  </a>
+
+            </div>
+
+            {% endif %}
+
+      </div>
+
+</div>
+
+{% endblock %}

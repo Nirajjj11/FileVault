@@ -39,6 +39,11 @@
                               <!-- User logged in -->
                               {% else %}
                               <li class="nav-item">
+                                    <a class="nav-link fw-bold" href="{% url 'storage:dashboard' %}">
+                                          Dashboard
+                                    </a>
+                              </li>
+                              <li class="nav-item">
                                     <a class="nav-link fw-bold" href="#">
                                           Hello ! {{ user.username }}
                                     </a>
