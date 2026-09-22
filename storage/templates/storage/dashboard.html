@@ -39,36 +39,27 @@ My Files
                   Folders
             </h4>
 
-            <div class="row g-4">
+            <div class="row g-3">
 
                   {% for folder in folders %}
 
-                  <div class="col-md-4 col-lg-3">
+                  <div class="col-auto">
 
-                        <div class="card h-100 border-0 shadow-sm">
+                        <a href="{{ folder.get_absolute_url }}" class="d-inline-flex align-items-center
+                                    gap-2 px-3 py-2
+                                    border rounded
+                                    text-decoration-none text-dark
+                                    bg-light" title="Open {{ folder.name }}">
 
-                              <div class="card-body">
+                              <span class="fs-4">
+                                    📁
+                              </span>
 
-                                    <div class="fs-1 mb-3">
-                                          📁
-                                    </div>
+                              <span class="fw-semibold text-truncate">
+                                    {{ folder.name }}
+                              </span>
 
-                                    <h5 class="card-title text-truncate">
-                                          {{ folder.name }}
-                                    </h5>
-
-                                    <p class="text-muted small">
-                                          Created
-                                          {{ folder.created_at|date:"d M Y" }}
-                                    </p>
-
-                                    <a href="{{ folder.get_absolute_url }}" class="btn btn-outline-primary btn-sm">
-                                          Open Folder
-                                    </a>
-
-                              </div>
-
-                        </div>
+                        </a>
 
                   </div>
 
