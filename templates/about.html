@@ -1,0 +1,383 @@
+{% extends "base.html" %}
+
+{% block title %}
+About Us | FileVault
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+      <!-- Hero Section -->
+      <div class="text-center mb-5">
+
+            <div class="display-5 mb-3">
+                  🔐
+            </div>
+
+            <h1 class="fw-bold">
+                  About FileVault
+            </h1>
+
+            <p class="lead text-muted mx-auto" style="max-width: 750px;">
+                  FileVault is a web-based file management platform designed to
+                  help users securely organize, manage, store, and share their
+                  digital files from a single place.
+            </p>
+
+      </div>
+
+
+      <!-- About Project -->
+      <div class="row g-4 mb-5">
+
+            <div class="col-lg-6">
+
+                  <div class="h-100 border border-secondary-subtle rounded-3 p-4">
+
+                        <h4 class="fw-bold mb-3">
+                              📁 What is FileVault?
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                              FileVault provides a simple and organized environment
+                              for managing personal files and folders. Users can
+                              create folders, create nested folders, upload files,
+                              rename files and folders, download files, and delete
+                              their own content.
+                        </p>
+
+                  </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                  <div class="h-100 border border-secondary-subtle rounded-3 p-4">
+
+                        <h4 class="fw-bold mb-3">
+                              🎯 Our Purpose
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                              The purpose of FileVault is to demonstrate how a
+                              practical file-management system can be developed
+                              using Django's Model-View-Template architecture,
+                              authentication, authorization, forms, database
+                              relationships, and file handling.
+                        </p>
+
+                  </div>
+
+            </div>
+
+      </div>
+
+
+      <!-- Features -->
+      <div class="mb-5">
+
+            <div class="text-center mb-4">
+
+                  <h2 class="fw-bold">
+                        What You Can Do
+                  </h2>
+
+                  <p class="text-muted">
+                        FileVault provides the core features required for
+                        organized file management.
+                  </p>
+
+            </div>
+
+
+            <div class="row g-3">
+
+                  <div class="col-md-6 col-lg-4">
+                        <div class="border rounded-3 p-4 h-100">
+                              <div class="fs-3 mb-2">👤</div>
+                              <h5 class="fw-bold">User Authentication</h5>
+                              <p class="text-muted mb-0">
+                                    Register, log in, and securely access your
+                                    personal FileVault workspace.
+                              </p>
+                        </div>
+                  </div>
+
+
+                  <div class="col-md-6 col-lg-4">
+                        <div class="border rounded-3 p-4 h-100">
+                              <div class="fs-3 mb-2">📂</div>
+                              <h5 class="fw-bold">Folder Management</h5>
+                              <p class="text-muted mb-0">
+                                    Create folders and nested folders to organize
+                                    your files in a structured way.
+                              </p>
+                        </div>
+                  </div>
+
+
+                  <div class="col-md-6 col-lg-4">
+                        <div class="border rounded-3 p-4 h-100">
+                              <div class="fs-3 mb-2">⬆️</div>
+                              <h5 class="fw-bold">File Upload</h5>
+                              <p class="text-muted mb-0">
+                                    Upload documents, images, videos, audio,
+                                    PDFs, archives, and other supported files.
+                              </p>
+                        </div>
+                  </div>
+
+
+                  <div class="col-md-6 col-lg-4">
+                        <div class="border rounded-3 p-4 h-100">
+                              <div class="fs-3 mb-2">✏️</div>
+                              <h5 class="fw-bold">Manage Files</h5>
+                              <p class="text-muted mb-0">
+                                    Rename and organize your uploaded files
+                                    without leaving the folder workspace.
+                              </p>
+                        </div>
+                  </div>
+
+
+                  <div class="col-md-6 col-lg-4">
+                        <div class="border rounded-3 p-4 h-100">
+                              <div class="fs-3 mb-2">⬇️</div>
+                              <h5 class="fw-bold">Download Files</h5>
+                              <p class="text-muted mb-0">
+                                    Access and download files stored inside
+                                    your folders.
+                              </p>
+                        </div>
+                  </div>
+
+
+                  <div class="col-md-6 col-lg-4">
+                        <div class="border rounded-3 p-4 h-100">
+                              <div class="fs-3 mb-2">🗑️</div>
+                              <h5 class="fw-bold">Delete & Organize</h5>
+                              <p class="text-muted mb-0">
+                                    Remove files and folders that are no longer
+                                    required and keep your workspace organized.
+                              </p>
+                        </div>
+                  </div>
+
+            </div>
+
+      </div>
+
+
+      <!-- Security -->
+      <div class="border border-secondary-subtle rounded-3 bg-light p-4 mb-5">
+
+            <div class="row align-items-center">
+
+                  <div class="col-lg-2 text-center mb-3 mb-lg-0">
+                        <div class="display-4">
+                              🔒
+                        </div>
+                  </div>
+
+                  <div class="col-lg-10">
+
+                        <h4 class="fw-bold">
+                              Authentication & Authorization
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                              FileVault uses Django's authentication system and
+                              ownership-based authorization to protect user
+                              resources. File and folder operations are restricted
+                              to the authenticated owner, helping prevent users
+                              from managing another user's content.
+                        </p>
+
+                  </div>
+
+            </div>
+
+      </div>
+
+
+      <!-- Technology -->
+      <div class="mb-5">
+
+            <div class="text-center mb-4">
+
+                  <h2 class="fw-bold">
+                        Built With
+                  </h2>
+
+                  <p class="text-muted">
+                        Technologies used to build the FileVault application.
+                  </p>
+
+            </div>
+
+
+            <div class="row g-3 justify-content-center">
+
+                  <div class="col-6 col-md-3">
+                        <div class="border rounded-3 text-center p-3">
+                              <div class="fs-3">🐍</div>
+                              <div class="fw-semibold">Python</div>
+                        </div>
+                  </div>
+
+
+                  <div class="col-6 col-md-3">
+                        <div class="border rounded-3 text-center p-3">
+                              <div class="fs-3">🎯</div>
+                              <div class="fw-semibold">Django</div>
+                        </div>
+                  </div>
+
+
+                  <div class="col-6 col-md-3">
+                        <div class="border rounded-3 text-center p-3">
+                              <div class="fs-3">🗄️</div>
+                              <div class="fw-semibold">SQLite</div>
+                        </div>
+                  </div>
+
+
+                  <div class="col-6 col-md-3">
+                        <div class="border rounded-3 text-center p-3">
+                              <div class="fs-3">🎨</div>
+                              <div class="fw-semibold">Bootstrap</div>
+                        </div>
+                  </div>
+
+            </div>
+
+      </div>
+
+
+      <!-- Architecture -->
+      <div class="border rounded-3 p-4 mb-5">
+
+            <h4 class="fw-bold mb-3">
+                  ⚙️ How FileVault Works
+            </h4>
+
+            <p class="text-muted">
+                  FileVault follows Django's Model-View-Template (MVT)
+                  architecture. A typical request travels through the
+                  application in the following way:
+            </p>
+
+            <div class="text-center py-3">
+
+                  <span class="fw-semibold">Browser</span>
+
+                  <span class="mx-2">→</span>
+
+                  <span class="fw-semibold">URL</span>
+
+                  <span class="mx-2">→</span>
+
+                  <span class="fw-semibold">CBV</span>
+
+                  <span class="mx-2">→</span>
+
+                  <span class="fw-semibold">Form / Model</span>
+
+                  <span class="mx-2">→</span>
+
+                  <span class="fw-semibold">Database</span>
+
+                  <span class="mx-2">→</span>
+
+                  <span class="fw-semibold">Template</span>
+
+            </div>
+
+      </div>
+
+
+      <!-- Project Structure -->
+      <div class="mb-5">
+
+            <div class="text-center mb-4">
+
+                  <h2 class="fw-bold">
+                        Project Modules
+                  </h2>
+
+            </div>
+
+            <div class="row g-3">
+
+                  <div class="col-md-4">
+                        <div class="border rounded-3 p-4 h-100">
+
+                              <h5 class="fw-bold">
+                                    👤 Accounts
+                              </h5>
+
+                              <p class="text-muted mb-0">
+                                    Handles user registration, login, logout,
+                                    authentication, and account-related functionality.
+                              </p>
+
+                        </div>
+                  </div>
+
+
+                  <div class="col-md-4">
+                        <div class="border rounded-3 p-4 h-100">
+
+                              <h5 class="fw-bold">
+                                    📁 Storage
+                              </h5>
+
+                              <p class="text-muted mb-0">
+                                    Handles folders, nested folders, file uploads,
+                                    file management, and storage-related operations.
+                              </p>
+
+                        </div>
+                  </div>
+
+
+                  <div class="col-md-4">
+                        <div class="border rounded-3 p-4 h-100">
+
+                              <h5 class="fw-bold">
+                                    🔗 Sharing
+                              </h5>
+
+                              <p class="text-muted mb-0">
+                                    Provides the foundation for controlled folder
+                                    and file sharing functionality.
+                              </p>
+
+                        </div>
+                  </div>
+
+            </div>
+
+      </div>
+
+
+      <!-- Closing -->
+      <div class="text-center border-top pt-5">
+
+            <h3 class="fw-bold mb-3">
+                  Simple. Organized. Secure.
+            </h3>
+
+            <p class="text-muted mx-auto" style="max-width: 650px;">
+                  FileVault brings file organization and management into
+                  one simple web application while demonstrating practical
+                  Django development concepts used in real-world projects.
+            </p>
+
+      </div>
+
+</div>
+
+{% endblock %}

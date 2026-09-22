@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),
     path("storage/", include("storage.urls")),
+    path("about/",TemplateView.as_view(template_name="about.html"),name="about"),
     path("", TemplateView.as_view(template_name = "home.html"), name="home"),
 ]
 
