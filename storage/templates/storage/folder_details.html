@@ -16,10 +16,49 @@
                         ← My Files
                   </a>
 
-                  <h3 class="fw-bold mt-2 mb-1">
-                        📁 {{ folder.name }}
-                  </h3>
+                  {% if rename_mode %}
 
+                  <form method="post" class="d-flex align-items-center gap-2 mt-2">
+                        {% csrf_token %}
+
+                        <span class="fs-5">📁</span>
+
+                        {{ form.name }}
+
+                        <button type="submit" class="btn btn-sm btn-success" title="Save">
+                              ✓
+                        </button>
+
+                        <a href="{{ folder.get_absolute_url }}" class="text-secondary text-decoration-none"
+                              title="Cancel">
+                              ✕
+                        </a>
+                  </form>
+
+                  {% else %}
+
+                  <div class="d-flex align-items-center gap-2 mt-2">
+
+                        <span class="fs-5">📁</span>
+
+                        <h3 class="fw-bold mb-0">
+                              {{ folder.name }}
+                        </h3>
+
+                        <a href="{% url 'storage:folder-rename' folder.pk %}" class="text-primary text-decoration-none"
+                              title="Rename folder">
+                              📝
+                        </a>
+
+                        <a href="{% url 'storage:folder-delete' folder.pk %}" class="text-danger text-decoration-none"
+                              title="Delete folder">
+                              🗑
+                        </a>
+
+                  </div>
+
+                  {% endif %}
+                  
             </div>
 
 

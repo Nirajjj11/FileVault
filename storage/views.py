@@ -87,6 +87,18 @@ class FolderDetailView(LoginRequiredMixin, DetailView):
                   owner=self.request.user
             ).order_by("-uploaded_at")
             return context
+
+class FolderDeleteView(LoginRequiredMixin, DeleteView):
+      model = Folder
+      template_name = "storage/folder_confirm_delete.html"
+
+      def get_queryset(self):
+            return Folder.objects.filter(
+                  owner=self.request.user
+            )
+
+      def get_success_url(self):
+            return reverse_lazy("storage:dashboard")
       
 class FolderCreateView(LoginRequiredMixin, CreateView):
 
@@ -182,9 +194,7 @@ class FileUploadView(LoginRequiredMixin, CreateView):
 
             return self.folder.get_absolute_url()
 
-
 class FileRenameView(LoginRequiredMixin, UpdateView):
-
       model = File
       form_class = FileRenameForm
       template_name = "storage/file_rename.html"
@@ -197,7 +207,6 @@ class FileRenameView(LoginRequiredMixin, UpdateView):
       def get_success_url(self):
 
             return self.object.folder.get_absolute_url()
-
 
 class FileDeleteView(LoginRequiredMixin, DeleteView):
 
@@ -213,17 +222,52 @@ class FileDeleteView(LoginRequiredMixin, DeleteView):
 
             return self.object.folder.get_absolute_url()
 
-
-class FolderDeleteView(LoginRequiredMixin, DeleteView):
-
+class FolderRenameView(LoginRequiredMixin, UpdateView):
       model = Folder
-      template_name = "storage/folder_confirm_delete.html"
+      form_class = FolderForm
+      template_name = "storage/folder_details.html"
+      context_object_name = "folder"
 
       def get_queryset(self):
             return Folder.objects.filter(
                   owner=self.request.user
             )
 
-      def get_success_url(self):
+      def get_form_kwargs(self):
+            kwargs = super().get_form_kwargs()
+            kwargs["user"] = self.request.user
+            return kwargs
 
-            return reverse_lazy("storage:dashboard")
+      def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+
+            context["subfolders"] = self.object.children.filter(
+                  owner=self.request.user
+            ).order_by("name")
+
+            context["files"] = self.object.files.filter(
+                  owner=self.request.user
+            ).order_by("-uploaded_at")
+
+            context["rename_mode"] = True
+
+            return context
+
+      def get_success_url(self):
+            return self.object.get_absolute_url()
+            model = Folder
+            form_class = FolderForm
+            template_name = "storage/folder_rename.html"
+
+            def get_queryset(self):
+                  return Folder.objects.filter(
+                        owner=self.request.user
+                  )
+
+            def get_form_kwargs(self):
+                  kwargs = super().get_form_kwargs()
+                  kwargs["user"] = self.request.user
+                  return kwargs
+
+            def get_success_url(self):
+                  return self.object.get_absolute_url()
