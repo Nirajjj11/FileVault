@@ -1,105 +1,354 @@
 {% extends "base.html" %}
 
 {% block title %}
-My Files
+Dashboard
 {% endblock %}
 
 {% block content %}
 
-<div class="container py-5">
-      <!-- ========================= --> <!-- Dashboard Header --> <!-- ========================= -->
+<div class="container py-4">
 
-      <div class="d-flex justify-content-between align-items-center mb-4">
+      <!-- ========================= -->
+      <!-- Dashboard Header -->
+      <!-- ========================= -->
 
-            <div>
-                  <h2 class="fw-bold mb-1">
-                        My Files
-                  </h2>
+      <div class="mb-4">
+            <h2 class="fw-bold mb-1">
+                  My Dashboard
+            </h2>
 
-                  <p class="text-muted mb-0">
-                        Manage your folders and files.
-                  </p>
-            </div>
-
-            <!-- Always visible -->
-            <a href="{% url 'storage:folder-create' %}" class="btn btn-primary">
-                  + New Folder
-            </a>
-
+            <p class="text-muted mb-0">
+                  Manage and monitor your files and folders.
+            </p>
       </div>
 
+      <!-- ========================= -->
 
-      <!-- ========================= --> <!-- Folder Section --> <!-- ========================= -->
+      <!-- Main Dashboard -->
 
-      {% if folders %}
+      <!-- ========================= -->
 
-      <div class="mb-5">
+      <div class="row g-4">
+            <!-- ========================= -->
+            <!-- LEFT: File Information -->
+            <!-- ========================= -->
 
-            <h4 class="fw-bold mb-3">
-                  Folders
-            </h4>
+            <div class="col-lg-6">
 
-            <div class="row g-3">
+                  <div class="h-100 border border-secondary-subtle
+                              rounded-3 bg-light p-4">
 
-                  {% for folder in folders %}
+                        <h5 class="fw-bold mb-1">
+                              File & Folder Overview
+                        </h5>
 
-                  <div class="col-auto">
+                        <p class="text-muted small mb-3">
+                              Overview of your stored data.
+                        </p>
 
-                        <a href="{{ folder.get_absolute_url }}" class="d-inline-flex align-items-center
-                                    gap-2 px-3 py-2
-                                    border rounded
-                                    text-decoration-none text-dark
-                                    bg-light" title="Open {{ folder.name }}">
 
-                              <span class="fs-4">
+                        <!-- Total Folders -->
+
+                        <div class="d-flex align-items-center
+                    justify-content-between
+                    py-2 px-2
+                    border-bottom">
+
+                              <div class="d-flex align-items-center gap-2">
+
+                                    <span class="fs-5">
+                                          📁
+                                    </span>
+
+                                    <span>
+                                          Total Folders
+                                    </span>
+
+                              </div>
+
+                              <span class="fw-bold">
+                                    {{ total_folders }}
+                              </span>
+
+                        </div>
+
+
+                        <!-- Total Files -->
+
+                        <div class="d-flex align-items-center
+                    justify-content-between
+                    py-2 px-2
+                    border-bottom">
+
+                              <div class="d-flex align-items-center gap-2">
+
+                                    <span class="fs-5">
+                                          📄
+                                    </span>
+
+                                    <span>
+                                          Total Files
+                                    </span>
+
+                              </div>
+
+                              <span class="fw-bold">
+                                    {{ total_files }}
+                              </span>
+
+                        </div>
+
+
+                        <!-- Storage -->
+
+                        <div class="d-flex align-items-center
+                    justify-content-between
+                    py-2 px-2
+                    border-bottom">
+
+                              <div class="d-flex align-items-center gap-2">
+
+                                    <span class="fs-5">
+                                          💾
+                                    </span>
+
+                                    <span>
+                                          Storage Used
+                                    </span>
+
+                              </div>
+
+                              <span class="fw-bold">
+                                    {{ total_storage|filesizeformat }}
+                              </span>
+
+                        </div>
+
+
+                        <!-- File Types -->
+
+                        <div class="mt-3">
+
+                              <div class="small fw-bold text-muted mb-2">
+                                    FILE TYPES
+                              </div>
+
+
+                              <div class="row g-0">
+
+                                    <div class="col-6">
+
+                                          <div class="d-flex justify-content-between
+                                align-items-center
+                                py-2 pe-3">
+
+                                                <span class="small">
+                                                      📄 Documents
+                                                </span>
+
+                                                <strong class="small">
+                                                      {{ document_count }}
+                                                </strong>
+
+                                          </div>
+
+                                    </div>
+
+
+                                    <div class="col-6">
+
+                                          <div class="d-flex justify-content-between
+                                align-items-center
+                                py-2 ps-3">
+
+                                                <span class="small">
+                                                      📕 PDF
+                                                </span>
+
+                                                <strong class="small">
+                                                      {{ pdf_count }}
+                                                </strong>
+
+                                          </div>
+
+                                    </div>
+
+
+                                    <div class="col-6">
+
+                                          <div class="d-flex justify-content-between
+                                align-items-center
+                                py-2 pe-3">
+
+                                                <span class="small">
+                                                      📊 PPT
+                                                </span>
+
+                                                <strong class="small">
+                                                      {{ presentation_count }}
+                                                </strong>
+
+                                          </div>
+
+                                    </div>
+
+
+                                    <div class="col-6">
+
+                                          <div class="d-flex justify-content-between
+                                align-items-center
+                                py-2 ps-3">
+
+                                                <span class="small">
+                                                      🖼️ Images
+                                                </span>
+
+                                                <strong class="small">
+                                                      {{ image_count }}
+                                                </strong>
+
+                                          </div>
+
+                                    </div>
+
+
+                                    <div class="col-6">
+
+                                          <div class="d-flex justify-content-between
+                                align-items-center
+                                py-2 pe-3">
+
+                                                <span class="small">
+                                                      🎬 Videos
+                                                </span>
+
+                                                <strong class="small">
+                                                      {{ video_count }}
+                                                </strong>
+
+                                          </div>
+
+                                    </div>
+
+
+                                    <div class="col-6">
+
+                                          <div class="d-flex justify-content-between
+                                align-items-center
+                                py-2 ps-3">
+
+                                                <span class="small">
+                                                      🎵 Audio
+                                                </span>
+
+                                                <strong class="small">
+                                                      {{ audio_count }}
+                                                </strong>
+
+                                          </div>
+
+                                    </div>
+
+                              </div>
+
+                        </div>
+
+                  </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- RIGHT: Manage Files -->
+            <!-- ========================= -->
+
+            <div class="col-lg-6">
+
+                  <div class="h-100 border border-secondary-subtle
+                rounded-3 bg-light p-4">
+
+                        <div class="d-flex justify-content-between
+                    align-items-start mb-3">
+
+                              <div>
+
+                                    <h5 class="fw-bold mb-1">
+                                          Manage Your Files
+                                    </h5>
+
+                                    <p class="text-muted small mb-0">
+                                          Open a folder to manage its files.
+                                    </p>
+
+                              </div>
+
+                              <a href="{% url 'storage:folder-create' %}" class="btn btn-primary btn-sm">
+                                    + New Folder
+                              </a>
+
+                        </div>
+
+
+                        {% if folders %}
+
+                        <div class="d-flex flex-column">
+
+                              {% for folder in folders %}
+
+                              <a href="{{ folder.get_absolute_url }}" class="d-flex align-items-center
+                               justify-content-between
+                               py-2 px-2
+                               border-bottom
+                               text-decoration-none
+                               text-dark">
+
+                                    <div class="d-flex align-items-center gap-2">
+
+                                          <span class="fs-5">
+                                                📁
+                                          </span>
+
+                                          <span class="fw-semibold">
+                                                {{ folder.name }}
+                                          </span>
+
+                                    </div>
+
+                                    <span class="text-muted">
+                                          ›
+                                    </span>
+
+                              </a>
+
+                              {% endfor %}
+
+                        </div>
+
+                        {% else %}
+
+                        <div class="text-center py-4">
+
+                              <div class="fs-3 mb-2">
                                     📁
-                              </span>
+                              </div>
 
-                              <span class="fw-semibold text-truncate">
-                                    {{ folder.name }}
-                              </span>
+                              <p class="text-muted small mb-3">
+                                    No folders created yet.
+                              </p>
 
-                        </a>
+                              <a href="{% url 'storage:folder-create' %}" class="btn btn-primary btn-sm">
+                                    Create New Folder
+                              </a>
+
+                        </div>
+
+                        {% endif %}
 
                   </div>
 
-                  {% endfor %}
+            </div </div>
 
-            </div>
-
-      </div>
-
-      {% else %}
-
-      <!-- ========================= --> <!-- Empty State --> <!-- ========================= -->
-
-      <div class="card border-0 shadow-sm">
-
-            <div class="card-body text-center py-5">
-
-                  <div class="display-1 mb-3">
-                        📁
-                  </div>
-
-                  <h4 class="fw-bold">
-                        No folders yet
-                  </h4>
-
-                  <p class="text-muted mb-4">
-                        Create your first folder to start
-                        organizing and uploading your files.
-                  </p>
-
-                  <a href="{% url 'storage:folder-create' %}" class="btn btn-primary">
-                        + Create New Folder
-                  </a>
-
-            </div>
 
       </div>
 
-      {% endif %}
-
-</div>
-
-{% endblock %}
+      {% endblock %}

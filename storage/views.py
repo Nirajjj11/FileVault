@@ -11,12 +11,63 @@ class DashboardView(LoginRequiredMixin, ListView):
       model = Folder
       template_name = "storage/dashboard.html"
       context_object_name = "folders"
-      
+
       def get_queryset(self):
             return Folder.objects.filter(
-                  owner = self.request.user,
-                  parent__isnull = True,
+                  owner=self.request.user,
+                  parent__isnull=True,
             ).order_by("name")
+
+      def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+
+            user = self.request.user
+
+            # All folders belonging to the logged-in user
+            all_folders = Folder.objects.filter(owner=user)
+
+            # All files belonging to the logged-in user
+            all_files = File.objects.filter(owner=user)
+
+            context["total_folders"] = all_folders.count()
+            context["total_files"] = all_files.count()
+
+            # File type statistics
+            context["image_count"] = all_files.filter(
+                  file_type__startswith="image/"
+            ).count()
+
+            context["video_count"] = all_files.filter(
+                  file_type__startswith="video/"
+            ).count()
+
+            context["audio_count"] = all_files.filter(
+                  file_type__startswith="audio/"
+            ).count()
+
+            context["pdf_count"] = all_files.filter(
+                  file_type="application/pdf"
+            ).count()
+
+            context["document_count"] = all_files.filter(
+                  file_type__in=[
+                  "application/msword",
+                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                  ]
+            ).count()
+
+            context["presentation_count"] = all_files.filter(
+                  file_type__in=[
+                  "application/vnd.ms-powerpoint",
+                  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                  ]
+            ).count()
+
+            context["total_storage"] = sum(
+                  file.size for file in all_files
+            )
+
+            return context
             
 class FolderDetailView(LoginRequiredMixin, DetailView):
       model = Folder
